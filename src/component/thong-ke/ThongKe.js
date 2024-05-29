@@ -1,5 +1,5 @@
 import { Breadcrumb, Button, Flex, Layout, Menu, theme } from "antd";
-import { CiBellOn } from "react-icons/ci";
+import { CiBellOn, CiShoppingTag } from "react-icons/ci";
 import { TiTicket } from "react-icons/ti";
 import { IoIosArrowDown } from "react-icons/io";
 import "./thongke.scss";
@@ -28,6 +28,14 @@ const options = [
   {
     value: "7 ngày gần đây",
     label: "7 ngày gần đây",
+  },
+  {
+    value: "30 ngày gần đây",
+    label: "30 ngày gần đây",
+  },
+  {
+    value: "Tùy chọn",
+    label: "Tùy chọn",
   },
 ];
 
@@ -60,6 +68,14 @@ const columns = [
       multiple: 1,
     },
   },
+  {
+    title: "Thời lượng gọi ra",
+    dataIndex: "time_total",
+    sorter: {
+      compare: (a, b) => a.call_fail - b.call_fail,
+      multiple: 1,
+    },
+  },
 ];
 const data = [
   {
@@ -68,6 +84,7 @@ const data = [
     call: 98,
     call_success: 60,
     call_fail: 28,
+    time_total: "34 giây"
   },
   {
     key: "2",
@@ -75,6 +92,7 @@ const data = [
     call: 98,
     call_success: 60,
     call_fail: 28,
+    time_total: "34 giây"
   },
   {
     key: "3",
@@ -82,6 +100,7 @@ const data = [
     call: 98,
     call_success: 60,
     call_fail: 28,
+    time_total: "34 giây"
   },
   {
     key: "4",
@@ -89,6 +108,7 @@ const data = [
     call: 98,
     call_success: 60,
     call_fail: 28,
+    time_total: "34 giây"
   },
 ];
 
@@ -104,7 +124,7 @@ const ThongKe = () => {
           <div className="mt-3">
             <Select
               style={{
-                width: "100%",
+                width: "150px",
               }}
               placeholder="Thống kê"
               onChange={handleChangeSelect}
@@ -113,7 +133,7 @@ const ThongKe = () => {
           </div>
         </div>
         <div className="thong-ke__header__right flex gap-5 items-center">
-          <Button type="primary">Excel</Button>
+          <Button type="primary">Xuất Excel</Button>
 
           <div className="so-du">
             <div>Số dư</div>
@@ -126,7 +146,7 @@ const ThongKe = () => {
           </div>
           <div className="account flex gap-3 items-center">
             <div>
-              <TiTicket className="text-xl" />
+              <CiShoppingTag className="text-xl" />
             </div>
             <div className="account_group">
               <div>Phạm Viết Chính</div>

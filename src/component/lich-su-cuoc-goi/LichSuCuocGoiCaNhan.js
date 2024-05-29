@@ -2,7 +2,7 @@ import { Breadcrumb, Button, Flex, Input, Layout, Menu, theme } from "antd";
 import { CiBellOn, CiShoppingTag } from "react-icons/ci";
 import { TiTicket } from "react-icons/ti";
 import { IoIosArrowDown } from "react-icons/io";
-import "./lichsucuocgoi.scss";
+import "./lichsucuocgoicanhan.scss";
 import { Select } from "antd";
 import { Card, Col, Row, Dropdown, Space } from "antd";
 import { Table } from "antd";
@@ -13,6 +13,8 @@ import { GoArrowUpRight } from "react-icons/go";
 import { IoIosPlay } from "react-icons/io";
 import { FaUserCircle } from "react-icons/fa";
 import { useLocation, useNavigate } from "react-router-dom";
+import { FaRegCircleQuestion } from "react-icons/fa6";
+import { Tooltip } from "antd";
 
 const columns = [
   {
@@ -32,10 +34,12 @@ const columns = [
     dataIndex: "huong",
     render: (text, record) => {
       return (
-        <span className="flex items-center">
-          <GoArrowUpRight className="text-green-600 mr-1 text-xl font-bold" />
-          Gọi ra
-        </span>
+        <div className="flex items-center">
+          <span className="text-red-400">Gọi nhỡ</span>
+          <Tooltip title="Không nhấc máy/Thuê bao/Sai số/Hotline bị khóa">
+            <FaRegCircleQuestion className="ml-2" />
+          </Tooltip>
+        </div>
       );
     },
   },
@@ -94,7 +98,7 @@ const data = [
   {
     key: "1",
     trangthai: "7207 Nguyễn Văn A",
-    huong: "Gọi ra",
+    huong: "Gọi nhỡ",
     hotline: 60,
     goitu: 28,
     goiden: "0123456789",
@@ -160,7 +164,7 @@ const boloc = [
     label: "Tên phòng ban",
   },
 ];
-const LichSuCuocGoi = () => {
+const LichSuCuocGoiCaNhan = () => {
   const location = useLocation();
   const navigate = useNavigate();
 
@@ -212,7 +216,7 @@ const LichSuCuocGoi = () => {
               <CiShoppingTag className="text-xl" />
             </div>
             <div className="account_group">
-              <div>Phạm Viết Chính</div>
+              <div>Cá nhân</div>
               <div>Tmsoftware.vn</div>
             </div>
             <div className="cursor-pointer">
@@ -309,4 +313,4 @@ const LichSuCuocGoi = () => {
   );
 };
 
-export default LichSuCuocGoi;
+export default LichSuCuocGoiCaNhan;

@@ -11,6 +11,7 @@ import LichSuCuocGoi from "./component/lich-su-cuoc-goi/LichSuCuocGoi";
 import DanhBa from "./component/danh-ba/DanhBa";
 import PhongBan from "./component/phong-ban/PhongBan";
 import Nhanvien from "./component/nhan-vien/NhanVien";
+import LichSuCuocGoiCaNhan from "./component/lich-su-cuoc-goi/LichSuCuocGoiCaNhan";
 
 const App = () => {
   const router = createBrowserRouter([
@@ -33,6 +34,10 @@ const App = () => {
         {
           path: "lich-su-cuoc-goi",
           element: <LichSuCuocGoi />
+        },
+        {
+          path: "lich-su-cuoc-goi-ca-nhan",
+          element: <LichSuCuocGoiCaNhan />
         },
         {
           path: "phong-ban",

@@ -12,15 +12,15 @@ const InfoSetting = () => {
           <div>0123456789 - nguyenan@gmail.com</div>
         </div>
       </div>
-      <div className="infosetting__name p-2 flex gap-2">
+      <div className="infosetting__name px-2 py-3 flex gap-2">
         <CiShoppingTag className="text-xl" />
         <div>HGFHG 453</div>
       </div>
-      <div className="infosetting__name p-2 flex gap-2">
+      <div className="infosetting__name px-2 py-3 flex gap-2">
         <CiShoppingTag className="text-xl" />
         <div>HGFHG 453</div>
       </div>
-      <div className="infosetting__name p-2 flex gap-2">
+      <div className="infosetting__name px-2 py-3 flex gap-2">
         <CiShoppingTag className="text-xl" />
         <div>HGFHG 453</div>
       </div>

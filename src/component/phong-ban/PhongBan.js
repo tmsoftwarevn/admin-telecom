@@ -1,5 +1,5 @@
 import { Button, Input, Popconfirm } from "antd";
-import { CiBellOn, CiEdit } from "react-icons/ci";
+import { CiBellOn, CiEdit, CiShoppingTag } from "react-icons/ci";
 import { TiTicket } from "react-icons/ti";
 import { IoIosArrowDown } from "react-icons/io";
 import "./phongban.scss";
@@ -151,7 +151,7 @@ const PhongBan = () => {
           <CiBellOn className="text-2xl" />
           <div className="account flex gap-3 items-center">
             <div>
-              <TiTicket className="text-xl" />
+              <CiShoppingTag className="text-xl" />
             </div>
             <div className="account_group">
               <div>Chủ công ty</div>
