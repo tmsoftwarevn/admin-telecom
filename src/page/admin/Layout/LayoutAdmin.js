@@ -7,7 +7,7 @@ import {
   UserOutlined,
 } from "@ant-design/icons";
 import { Breadcrumb, Button, Flex, Layout, Menu, theme } from "antd";
-import { Outlet, useNavigate } from "react-router-dom";
+import { Link, Outlet, useNavigate } from "react-router-dom";
 const { Header, Content, Footer, Sider } = Layout;
 function getItem(label, key, icon, children) {
   return {
@@ -80,6 +80,11 @@ const App = () => {
       "5",
       <DesktopOutlined />
     ),
+    getItem("Zalo Cloud", "sub1", <DesktopOutlined />, [
+      getItem(<Link to="/admin/zcc">ZCC</Link>, "menu1"),
+      getItem(<Link to="/admin/znc">ZNC</Link>, "menu22343"),
+      
+    ]),
   ];
   return (
     <Layout

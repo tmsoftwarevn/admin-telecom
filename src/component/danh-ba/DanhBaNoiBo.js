@@ -1,16 +1,26 @@
-import { Button, Input, Popconfirm } from "antd";
+import {
+  Breadcrumb,
+  Button,
+  Flex,
+  Input,
+  Layout,
+  Menu,
+  Popconfirm,
+  theme,
+} from "antd";
 import { CiBellOn, CiEdit, CiShoppingTag } from "react-icons/ci";
 import { TiTicket } from "react-icons/ti";
 import { IoIosArrowDown } from "react-icons/io";
-import "./phongban.scss";
+import "./danhba.scss";
 import { Select } from "antd";
 import { Card, Col, Row, Dropdown, Space } from "antd";
 import { Table } from "antd";
 import InfoSetting from "../thong-ke/InfoSetting";
 import { MdDelete } from "react-icons/md";
-import ModalAdd from "./ModalAdd";
-import { useState } from "react";
 import ModalEdit from "./ModalEdit";
+import { useState } from "react";
+import { useLocation, useNavigate } from "react-router-dom";
+import ModalAdd from "./ModalAdd";
 
 const title = "Xác nhận xóa ?";
 
@@ -18,39 +28,36 @@ const data = [
   {
     key: "1",
     code: "125659631321",
-    name: "Khác",
-    noidung: "rew  rew dsv3e rewr",
+    name: "Danh bộ nội bộ",
+    phone: "0369875214",
     createdAt: "10/10/2010",
-    nhanvien: "3",
+    note: "Dùng để test",
     action: "",
   },
   {
     key: "2",
     code: "125659631321",
-    name: "DEV",
-    noidung: "rew  rew dsv3e rewr",
+    name: "Nguyễn Văn A",
+    phone: "0369875214",
     createdAt: "10/10/2010",
-    nhanvien: "3",
+    note: "Dùng để test",
     action: "",
   },
   {
     key: "3",
     code: "125659631321",
-    name: "VIP",
-    noidung: "rew  rew dsv3e rewr",
+    name: "Nguyễn Văn A",
+    phone: "0369875214",
     createdAt: "10/10/2010",
-    nhanvien: "3",
+    note: "-",
     action: "",
   },
 ];
 
-const PhongBan = () => {
-  const [isModal, setIsModal] = useState(false);
-  const [isModalEdit, setIsModalEdit] = useState(false);
-
+const DanhBaNoiBo = () => {
   const columns = [
     {
-      title: "Mã phòng ban",
+      title: "Mã",
       dataIndex: "code",
       render: (text, record) => {
         return (
@@ -61,20 +68,20 @@ const PhongBan = () => {
       },
     },
     {
-      title: "Tên phòng ban",
+      title: "Tên",
       dataIndex: "name",
     },
     {
-      title: "Nội dung",
-      dataIndex: "noidung",
+      title: "Số điện thoại",
+      dataIndex: "phone",
     },
     {
       title: "Ngày tạo",
       dataIndex: "createdAt",
     },
     {
-      title: "Số nhân viên",
-      dataIndex: "nhanvien",
+      title: "Ghi chú",
+      dataIndex: "note",
     },
     {
       title: "Thao tác",
@@ -121,7 +128,7 @@ const PhongBan = () => {
                 style={{ display: "flex", alignItems: "center" }}
               >
                 <CiEdit
-                  onClick={() => setIsModalEdit(true)}
+                  onClick={() => setIsModalUpdate(true)}
                   style={{ fontSize: "15px" }}
                 />
               </Button>
@@ -131,8 +138,11 @@ const PhongBan = () => {
       },
     },
   ];
+  const navigate = useNavigate();
+  const location = useLocation();
+  const [isModalUpdate, setIsModalUpdate] = useState(false);
+  const [isModal, setIsModal] = useState(false);
   ////
-
   const handleChangeSelect = (value) => {
     console.log(`selected ${value}`);
   };
@@ -150,20 +160,44 @@ const PhongBan = () => {
 
   return (
     <>
-      <div className="phongban pb-3">
-        <div className="phongban__header px-3 py-2 flex justify-between">
-          <div className="phongban__header__left flex gap-4">
-            <div className="text-xl font-semibold ">Phòng ban</div>
-          </div>
-
-          <div className="phongban__header__right flex gap-5 items-center">
-            <Button
-              type="primary"
-              onClick={() => {
-                setIsModal(true);
-              }}
+      <div className="danhba pb-3">
+        <div className="danhba__header px-3 py-2 flex justify-between">
+          <div className="danhba__header__left flex gap-4">
+            <div className="text-xl font-semibold ">Danh bạ</div>
+            <div
+              className={
+                location.pathname === "/admin/danh-ba"
+                  ? "cursor-pointer text-base text-blue-600"
+                  : "cursor-pointer text-base"
+              }
+              onClick={() => navigate("/admin/danh-ba")}
             >
-              Thêm phòng ban
+              Danh bạ chung
+            </div>
+            <div
+              className={
+                location.pathname === "/admin/danh-ba-noi-bo"
+                  ? "cursor-pointer text-base text-blue-600"
+                  : "cursor-pointer text-base"
+              }
+              onClick={() => navigate("/admin/danh-ba-noi-bo")}
+            >
+              Danh bạ nội bộ
+            </div>
+            <div
+              className={
+                location.pathname === "/admin/danh-ba-noi-bo-import"
+                  ? "cursor-pointer text-base text-blue-600"
+                  : "cursor-pointer text-base"
+              }
+              onClick={() => navigate("/admin/danh-ba-noi-bo-import")}
+            >
+              Import
+            </div>
+          </div>
+          <div className="danhba__header__right flex gap-5 items-center">
+            <Button type="primary" onClick={() => setIsModal(true)}>
+              Thêm liên hệ
             </Button>
 
             <CiBellOn className="text-2xl" />
@@ -190,15 +224,37 @@ const PhongBan = () => {
             </div>
           </div>
         </div>
+        <div className="danhba__content mt-3 px-3">
+          <Row gutter={30}>
+            <Col span={4}>
+              <Input placeholder="Tên" />
+            </Col>
+            <Col span={4}>
+              <Input placeholder="Số điện thoại" />
+            </Col>
+          </Row>
+        </div>
 
         <div className="mt-3 px-3">
-          <Table columns={columns} dataSource={data} pagination={false} />
+          <Table
+            columns={columns}
+            dataSource={data}
+            pagination={{
+              showSizeChanger: true,
+              position: ["bottomCenter"],
+              pageSizeOptions: [2, 10, 50, 100],
+            }}
+          />
         </div>
       </div>
+
+      <ModalEdit
+        isModalUpdate={isModalUpdate}
+        setIsModalUpdate={setIsModalUpdate}
+      />
       <ModalAdd isModal={isModal} setIsModal={setIsModal} />
-      <ModalEdit isModalEdit={isModalEdit} setIsModalEdit={setIsModalEdit} />
     </>
   );
 };
 
-export default PhongBan;
+export default DanhBaNoiBo;

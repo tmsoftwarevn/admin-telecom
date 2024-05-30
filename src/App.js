@@ -12,6 +12,8 @@ import DanhBa from "./component/danh-ba/DanhBa";
 import PhongBan from "./component/phong-ban/PhongBan";
 import Nhanvien from "./component/nhan-vien/NhanVien";
 import LichSuCuocGoiCaNhan from "./component/lich-su-cuoc-goi/LichSuCuocGoiCaNhan";
+import DanhBaNoiBo from "./component/danh-ba/DanhBaNoiBo";
+import ImportFile from "./component/Import file/ImportFile";
 
 const App = () => {
   const router = createBrowserRouter([
@@ -23,6 +25,7 @@ const App = () => {
       path: "/admin",
       element: <LayoutAdmin />,
       children: [
+        { index: true, element: <ThongKe /> },
         {
           path: "thong-ke",
           element: <ThongKe />
@@ -30,6 +33,18 @@ const App = () => {
         {
           path: "danh-ba",
           element: <DanhBa />
+        },
+        {
+          path: "danh-ba-import",
+          element: <ImportFile />
+        },
+        {
+          path: "danh-ba-noi-bo-import",
+          element: <ImportFile />
+        },
+        {
+          path: "danh-ba-noi-bo",
+          element: <DanhBaNoiBo />
         },
         {
           path: "lich-su-cuoc-goi",

@@ -19,6 +19,8 @@ import InfoSetting from "../thong-ke/InfoSetting";
 import { MdDelete } from "react-icons/md";
 import ModalEdit from "./ModalEdit";
 import { useState } from "react";
+import { useLocation, useNavigate } from "react-router-dom";
+import ModalAdd from "./ModalAdd";
 
 const title = "Xác nhận xóa ?";
 
@@ -138,6 +140,10 @@ const DanhBa = () => {
   ];
 
   const [isModalUpdate, setIsModalUpdate] = useState(false);
+  const [isModal, setIsModal] = useState(false)
+  const navigate = useNavigate();
+  const location = useLocation();
+
   ////
   const handleChangeSelect = (value) => {
     console.log(`selected ${value}`);
@@ -160,12 +166,39 @@ const DanhBa = () => {
         <div className="danhba__header px-3 py-2 flex justify-between">
           <div className="danhba__header__left flex gap-4">
             <div className="text-xl font-semibold ">Danh bạ</div>
-            <div className="cursor-pointer text-base">Danh bạ chung</div>
-            <div className="cursor-pointer text-base">Danh bạ nội bộ</div>
-            <div className="cursor-pointer text-base">Import</div>
+            <div
+              className={
+                location.pathname === "/admin/danh-ba"
+                  ? "cursor-pointer text-base text-blue-600"
+                  : "cursor-pointer text-base"
+              }
+              onClick={() => navigate("/admin/danh-ba")}
+            >
+              Danh bạ chung
+            </div>
+            <div
+              className={
+                location.pathname === "/admin/danh-ba-noi-bo"
+                  ? "cursor-pointer text-base text-blue-600"
+                  : "cursor-pointer text-base"
+              }
+              onClick={() => navigate("/admin/danh-ba-noi-bo")}
+            >
+              Danh bạ nội bộ
+            </div>
+            <div
+              className={
+                location.pathname === "/admin/danh-ba-import"
+                  ? "cursor-pointer text-base text-blue-600"
+                  : "cursor-pointer text-base"
+              }
+              onClick={() => navigate("/admin/danh-ba-import")}
+            >
+              Import
+            </div>
           </div>
           <div className="danhba__header__right flex gap-5 items-center">
-            <Button type="primary">Thêm liên hệ</Button>
+            <Button type="primary" onClick={() => setIsModal(true)}>Thêm liên hệ</Button>
 
             <CiBellOn className="text-2xl" />
             <div className="account flex gap-3 items-center">
@@ -219,6 +252,7 @@ const DanhBa = () => {
         isModalUpdate={isModalUpdate}
         setIsModalUpdate={setIsModalUpdate}
       />
+      <ModalAdd isModal ={isModal} setIsModal ={setIsModal} />
     </>
   );
 };
